@@ -1,0 +1,34 @@
+{% extends "newsapp/base_index.html" %}
+
+{# NOTE: need to add the search function for the general tab, which is a form. So context will have to be changed, as well as the index views.py thereof, and forms.py #}
+
+{% block search %}
+
+{% endblock search %}
+
+
+{% block menu %}
+<ul class="list-inline">
+    <li class="active"><a><h4>My News</h4></a></li>
+    <li><a href={% url "myfilter" %}><h4>My Filter</h4></a></li>
+    <li><a href={% url "customize" %}><h4>Customize</h4></a></li>
+</ul>
+{% endblock menu %}
+
+{% block general %}
+<h4>MY NEWS</h4>
+
+<p>You haven't selected or customized any newsflow.</p>
+
+{% endblock general %}
+
+{% block analytics %}
+<h4> ANALYTICS </h4>
+
+{% endblock analytics %}
+
+
+
+
+
+

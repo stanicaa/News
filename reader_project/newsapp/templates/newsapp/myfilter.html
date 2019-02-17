@@ -1,0 +1,50 @@
+{% extends "newsapp/base_index.html" %}
+
+{# This page handles the FILTER part, where the user only gets the titles based on his filter #}
+
+{% block search %}
+<form method="get">
+    {% csrf_token %}
+    {{ form_f }}
+    <input type="submit" value="Search" />
+</form>
+{% endblock search %}
+
+{%block menu %}
+<ul class="list-inline">
+    <li><a href={% url "index" %}><h4>My News</h4></a></li>
+    <li class="active"><a><h4>My Filter</h4></a></li>
+    <li><a href={% url "customize" %}><h4>Customize</h4></a></li>
+</ul>
+{% endblock menu %}
+
+
+{% block mynews %}
+<h4> MY FILTER </h4>
+
+
+<ul>
+    {% for aa in filtered_list %}
+    <li><a href="{{ aa.link }}/" >{{ aa.title }}</a></li>
+    
+    {% endfor %}
+</ul>
+<p>This is all the news</p>
+
+
+
+{% endblock mynews %}
+
+{% block analytics %}
+<h4> ANALYTICS </h4>
+<p>This part is flagging the main 20 concepts that appeared in the news titles.</p>
+<ul>
+    {% for c in list %}
+    <li>{{c}}</li>
+    {% endfor %}
+</ul>
+{% endblock analytics %}
+
+
+
+

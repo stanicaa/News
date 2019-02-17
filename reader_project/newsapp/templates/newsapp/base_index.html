@@ -1,0 +1,49 @@
+{% load staticfiles %}
+
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>News Reader</title>
+        <link rel="stylesheet" href="{% static 'css/newsapp.css' %}">
+            </head>
+    
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h2><a href="/">News Reader Testing App</a></h2>
+                </div>
+            </div>
+        </div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {% block search %}{% endblock search %}
+            {% block menu %}{% endblock menu %}
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-md-8 col-lg-8">
+{% block general %}{% endblock general %}
+{% block mynews %}{% endblock mynews %}
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            {% block analytics %}{% endblock analytics %}
+        </div>
+
+    </body>
+    
+</html>
+

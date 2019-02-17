@@ -1,0 +1,51 @@
+{% extends "newsapp/base_index.html" %}
+
+{# NOTE: need to add the search function for the general tab, which is a form. So context will have to be changed, as well as the index views.py thereof, and forms.py #}
+
+{% block search %}
+<form method="get">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Search" />
+</form>
+{% endblock search %}
+
+
+{% block menu %}
+<ul class="list-inline">
+    <li class="active"><a><h4>My News</h4></a></li>
+    <li><a href={% url "myfilter" %}><h4>My Filter</h4></a></li>
+    <li><a href={% url "customize" %}><h4>Customize</h4></a></li>
+</ul>
+{% endblock menu %}
+
+{% block general %}
+<h4>MY NEWS</h4>
+
+            {% if latest_news %}
+            <ul>
+                {% for a in latest_news %}
+                <li><a href="{{ a.link }}/" >{{ a.title }}</a></li>
+               
+                {% endfor %}
+            </ul>
+            <p>This is all the news in your feeds.</p>
+            {% else %}
+            <p>You don't have any news/ haven't set up any news feed.</p>
+            {% endif %}
+{% endblock general %}
+
+{% block analytics %}
+<h4> ANALYTICS </h4>
+<p>This part is flagging the main 20 concepts that appeared in the news titles.</p>
+<ul>
+    {% for c in list %}
+    <li>{{c}}</li>
+    {% endfor %}
+</ul>
+{% endblock analytics %}
+
+
+
+
+

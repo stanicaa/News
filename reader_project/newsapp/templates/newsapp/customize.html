@@ -1,0 +1,83 @@
+{% load staticfiles %}
+
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>News Reader</title>
+        <link rel="stylesheet" href="{% static 'css/newsapp.css' %}">
+    </head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2><a href="/">CUSTOMIZING YOUR NEWS FEED</a></h2>
+            </div>
+        </div>
+    </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ul class="list-inline">
+                <li><a href={% url "index" %}><h4>My News</h4></a></li>
+                <li><a href={% url "myfilter" %}><h4>My Filter</h4></a></li>
+                <li class="active"><a><h4>Customize</h4></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <h4><a href="/">Adding a new RSS link to your feeds</a></h4>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Add" />
+</form>
+
+            <h4><a href="/">Or Choose from our suggestions</a></h4>
+            <p> Under construction </p>
+            <h4><a href="/">Your existing feeds</a></h4>
+            {% for aa in existing_feeds_unique %}
+            {{aa}}
+            {% endfor %}
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <h4><a href="/">Build your filter</a></h4>
+            <form method="post">
+                {% csrf_token %}
+                {{ form_filter }}
+                <input type="submit" value="Submit" />
+            </form>
+            
+            <h4><a hfref="/">Current Filter</a></h4>
+            {% ifequal dummy "a" %}
+            {{existing_unique}}
+            {% else %}
+            {% for bb in existing_unique %}
+            {{bb}}
+            {% endfor %}
+            {% endifequal %}
+            
+            <h4><a href="/">Clear your Filter</a></h4>
+            <form method="post">
+                {% csrf_token %}
+                {{ form_reset }}
+                <input type="submit" value="Clear" />
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
