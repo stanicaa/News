@@ -1,5 +1,4 @@
 import feedparser
-import time
 import pymysql
 import time
 import datetime
